@@ -9,6 +9,7 @@ from flask import Flask, render_template, request
 import cv2
 import numpy as np
 from keras.models import load_model
+from waitress import serve
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 1
@@ -53,4 +54,4 @@ def after():
         return render_template('after.html', data="Face not detected")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    serve(app, host="0.0.0.0",port=8000)
